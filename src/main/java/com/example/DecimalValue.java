@@ -17,4 +17,8 @@ public class DecimalValue extends Value {
 
     @Column(name = "DECIMAL_VALUE")
     private BigDecimal value;
+
+    public String getType() {
+        return "DECIMAL";
+    }
 }

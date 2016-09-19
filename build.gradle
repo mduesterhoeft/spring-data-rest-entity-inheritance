@@ -22,6 +22,9 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
+	maven {
+		url 'https://repo.spring.io/libs-snapshot'
+	}
 	mavenCentral()
 }
 
@@ -29,6 +32,8 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	compile 'org.springframework.data:spring-data-rest-webmvc:2.5.3.BUILD-SNAPSHOT'
+	compile 'org.springframework.data:spring-data-rest-core:2.5.3.BUILD-SNAPSHOT'
 	compile('org.projectlombok:lombok')
 	compile('com.google.guava:guava:18.0')
 	runtime('com.h2database:h2')

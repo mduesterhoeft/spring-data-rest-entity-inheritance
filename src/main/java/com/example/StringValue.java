@@ -15,4 +15,8 @@ public class StringValue extends Value {
 
     @Column(name = "STRING_VALUE")
     private String value;
+
+    public String getType() {
+        return "STRING";
+    }
 }

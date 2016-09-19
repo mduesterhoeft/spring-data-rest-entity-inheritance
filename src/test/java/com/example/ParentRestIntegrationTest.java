@@ -63,7 +63,25 @@ public class ParentRestIntegrationTest {
                 .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("valueHolder.type", equalTo("DECIMAL")))
-                .andExpect(jsonPath("valueHolder.percentageValue", equalTo(0.95d)))
+                .andExpect(jsonPath("valueHolder.value", equalTo(0.95d)))
+        ;
+    }
+
+    @Test
+    public void should_fail_to_create_percentage_value_with_incorrect_type() throws Exception {
+        Map<Object, Object> jsonMap = ImmutableMap.builder()
+                .put("valueHolder", ImmutableMap.of(
+                        "type", "DECIMAL",
+                        "value", "some"))
+                .build();
+
+        mockMvc.perform(
+                post(parentsUri)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(jsonMap)))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
         ;
     }
 

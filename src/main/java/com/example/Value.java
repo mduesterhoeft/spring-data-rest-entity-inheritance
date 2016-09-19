@@ -16,14 +16,18 @@ import lombok.Getter;
 
 @Entity
 @Inheritance(strategy= SINGLE_TABLE)
-@JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include=JsonTypeInfo.As.PROPERTY, property="type")
+@JsonTypeInfo(use=JsonTypeInfo.Id.NAME,
+        include=JsonTypeInfo.As.EXISTING_PROPERTY,
+        property="type")
 @JsonSubTypes({
         @Type(name="DECIMAL", value=DecimalValue.class),
         @Type(name="STRING", value=StringValue.class)})
-public class Value {
+public abstract class Value {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Getter
     private Long id;
+
+    public abstract String getType();
 }
